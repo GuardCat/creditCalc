@@ -1,5 +1,13 @@
 /*jshint es5: true, esnext: true, browser: true*/
 
+/**
+ * 
+ * @param {number} sum сумма кредита в рублях
+ * @param {number} rate годовая ставка в процентах (0—100)
+ * @param {number} term ставка в месяцах
+ * @return {object} объект, содержащий переплату, суммы выплат и расписание погашения. 
+ */
+
 function calcuateAnnuitet (sum, rate, term) {
 	const 
 		monthlyRate			= rate / 100 / 12,
