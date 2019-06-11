@@ -32,11 +32,18 @@ function generateAnnuitetShedule (sum, rate, term, customPayments = [ ]) {
 		monthlyOverpaySum	= remainingSum * monthlyRate;
 		monthlyDebtSum		= monthlyPayment - monthlyOverpaySum - ( customPayment ? (monthlyPayment - customPayment) : 0 );
 		remainingSum		-=monthlyDebtSum;
-		monthlyPayment		= customPayment ? calculateAnnuitetPayment(remainingSum, monthlyRate, term - i) : monthlyPayment;
 
 		if (remainingSum <= 0) break;
-		shedule.push( {minPayment: monthlyPayment, payment: customPayment ? customPayment : monthlyPayment, debt: monthlyDebtSum, overpay: monthlyOverpaySum } );
+		shedule.push( {minPayment: monthlyPayment, payment: customPayment ? customPayment : monthlyPayment, debt: monthlyDebtSum, overpay: monthlyOverpaySum, remainingSum: remainingSum } );
+		monthlyPayment		= customPayment ? calculateAnnuitetPayment(remainingSum, monthlyRate, term - i) : monthlyPayment;
 	}
 
 	return shedule;
 }
+
+var a = [160000]
+for(let i = 0; i < 239; i++) a.push(60000);
+
+var res = generateAnnuitetShedule(5960000, 9.75, 12 * 20, a);
+console.log( JSON.stringify(res, 2) );
+console.log(res.length)
