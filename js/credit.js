@@ -2,10 +2,10 @@
 
 /**
  * 
- * @param {number} sum сумма кредита в рублях
- * @param {number} rate годовая ставка в процентах (0—100)
- * @param {number} term ставка в месяцах
- * @return {object} объект, содержащий переплату, суммы выплат и расписание погашения. 
+ * @param	{number} sum сумма кредита в рублях
+ * @param	{number} rate годовая ставка в процентах (0—100)
+ * @param	{number} term ставка в месяцах
+ * @return	{object} объект, содержащий переплату, суммы выплат и расписание погашения. 
  */
 
 function calcuateAnnuitet (sum, rate, term) {
@@ -19,13 +19,10 @@ function calcuateAnnuitet (sum, rate, term) {
 	let 
 		result = { 
 			shedule:		[ ], 
-			total:			{ 
-				sum:		totalSum,
-				percent:	+( (totalSum / sum * 100).toFixed(2) )
-			},
+			totalSum:		totalSum,
 			overpayment:	{
 				sum:		overpaySum,
-				percent:	+( (overpaySum / sum * 100, 2).toFixed(2) )
+				percent:	+( (overpaySum / sum * 100).toFixed(2) )
 			}
 		},
 		remainingSum 		= sum,
