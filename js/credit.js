@@ -38,7 +38,7 @@ function generateAnnuitetShedule (sum, rate, term, customPayments = [ ]) {
 	for (let i = 0; i < term; i++) {
 		customPayment		= customPayments[i];
 		monthlyOverpaySum	= remainingSum * monthlyRate;
-		monthlyDebtSum		= monthlyPayment - monthlyOverpaySum;
+		monthlyDebtSum		= monthlyPayment - monthlyOverpaySum + customPayment ? (customPayment - monthlyPayment) : 0;
 
 		if (customPayment && remainingSum + monthlyOverpaySum < customPayment) customPayment = remainingSum + monthlyOverpaySum;
 		remainingSum		= remainingSum - monthlyDebtSum - ( customPayment ? (customPayment - monthlyPayment) : 0 );
