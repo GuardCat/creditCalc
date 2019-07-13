@@ -1,4 +1,4 @@
-/*jshint es5: true, esnext: true, browser: true*/
+/*jshint esversion: 6, browser: true*/
 
 
 /**
@@ -36,22 +36,22 @@ function generateAnnuitetShedule (sum, rate, term, customPayments = [ ]) {
 	;
 
 	for (let i = 0; i < term; i++) {
-		customPayment		= customPayments[i] ? customPayments[i] : false;
+		customPayment		= customPayments[i];
 		monthlyOverpaySum	= remainingSum * monthlyRate;
 		monthlyDebtSum		= monthlyPayment - monthlyOverpaySum;
-		
-		if (customPayment && remainingSum + monthlyOverpaySum < customPayment) customPayment = remainingSum + monthlyOverpaySum;		
+
+		if (customPayment && remainingSum + monthlyOverpaySum < customPayment) customPayment = remainingSum + monthlyOverpaySum;
 		remainingSum		= remainingSum - monthlyDebtSum - ( customPayment ? (customPayment - monthlyPayment) : 0 );
 
 		shedule.push( {
-			minPayment: monthlyPayment, 
-			payment: customPayment ? customPayment : monthlyPayment,
-			debt: monthlyDebtSum,
-			overpay: monthlyOverpaySum,
-			remainingSum: remainingSum,
-			number:	i + 1
+			minPayment:		monthlyPayment,
+			payment: 		customPayment ? customPayment : monthlyPayment,
+			debt: 			monthlyDebtSum,
+			overpay: 		monthlyOverpaySum,
+			remainingSum:	remainingSum,
+			number:			i + 1
 		} );
-		
+
 		if (remainingSum <= 0) break;
 		monthlyPayment		= customPayment ? calculateAnnuitetPayment(remainingSum, monthlyRate, term - i) : monthlyPayment;
 	}
