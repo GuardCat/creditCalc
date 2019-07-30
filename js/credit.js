@@ -4,10 +4,9 @@
 /**
  *
  * @param	{number}	sum сумма кредита в рублях
- * @param	{number}	rate годовая ставка в процентах (0—100)
+ * @param	{number}	monthlyRate ставка в месяц (годовая / 12)
  * @param	{number}	term ставка в месяцах
- * @return	{array}		массив, содержащий инфо о каждом платеже
- * @requires			function calculateAnnuitetPaymen
+ * @return	{number}	ежемесячный платеж
  *
  */
 function calculateAnnuitetPayment(sum, monthlyRate, term) {
@@ -20,10 +19,10 @@ function calculateAnnuitetPayment(sum, monthlyRate, term) {
  * @param	{number}	rate годовая ставка в процентах (0—100)
  * @param	{number}	term ставка в месяцах
  * @return	{array}		массив, содержащий инфо о каждом платеже
- * @requires			function calculateAnnuitetPaymen
+ * @requires			function calculateAnnuitetPayment
  *
  */
-function generateAnnuitetShedule (sum, rate, term, customPayments = [ ]) {
+function generateAnnuitetSchedule (sum, rate, term, customPayments = [ ]) {
 	const monthlyRate = rate / 100 / 12;
 
 	let
@@ -32,7 +31,7 @@ function generateAnnuitetShedule (sum, rate, term, customPayments = [ ]) {
 		monthlyOverpaySum,
 		monthlyDebtSum,
 		customPayment = false,
-		shedule = [ ]
+		schedule = [ ]
 	;
 
 	for (let i = 0; i < term; i++) {
@@ -43,7 +42,7 @@ function generateAnnuitetShedule (sum, rate, term, customPayments = [ ]) {
 		if (customPayment && remainingSum + monthlyOverpaySum < customPayment) customPayment = remainingSum + monthlyOverpaySum;
 		remainingSum		= remainingSum - monthlyDebtSum - ( customPayment ? (customPayment - monthlyPayment) : 0 );
 
-		shedule.push( {
+		schedule.push( {
 			minPayment:		monthlyPayment,
 			payment: 		customPayment ? customPayment : monthlyPayment,
 			debt: 			monthlyDebtSum,
@@ -56,13 +55,13 @@ function generateAnnuitetShedule (sum, rate, term, customPayments = [ ]) {
 		monthlyPayment		= customPayment ? calculateAnnuitetPayment(remainingSum, monthlyRate, term - i) : monthlyPayment;
 	}
 
-	return shedule;
+	return schedule;
 }
 
 var a = [160000];
 for(let i = 0; i < 239; i++) a.push(60000);
 
-var res = generateAnnuitetShedule(5960000, 9.75, 12 * 20, a);
+var res = generateAnnuitetSchedule(5960000, 9.75, 12 * 20, a);
 console.log( JSON.stringify(res, 2) );
 console.log(res.length);
 
