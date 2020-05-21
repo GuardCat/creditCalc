@@ -1,37 +1,40 @@
 body {
-	font-family:	Calibri;
-	padding:		0px;
-	margin:			0px;
+	font-family:		Calibri;
+	padding:			5px;
+	margin:				0px;
 }
 
 header {
-	height:			30px;
-	width:			100%;
-	box-shadow:		0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.20);
-	display:		flex;
-	align-items:	center;
-	
-	color:			#001979;
+	height:				60px;
+	width:				100%;
+	display:			flex;
+	align-items:		center;
+	color:				#001979;
 }
 
 h1 {
-	font-size:		20px;
-	margin-left:	5px;
+	font-size:			20px;
+	margin-left:		5px;
 }
 
 main {
-	margin-top:		10px;
-	display:		flex;
-	flex-wrap:		wrap;
-	align-items:	center;
-	align-content:	center;
+	display:			flex;
+	flex-wrap:			wrap;
+	align-items:		center;
+	align-content:		center;
 }
 
 article {
-	display:		flex;
-	width:			320px;
-	height:			320px;
-	border-radius:	5px;
-	box-shadow:		0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.20);
-	
+	display:			flex;
+	width:				320px;
+	height:				320px;
+	border-radius:		5px;
+}
+
+.shadow {
+	box-shadow:			0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.20);
+}
+
+article > h1 {
+	background-color:	#001979;
 }
