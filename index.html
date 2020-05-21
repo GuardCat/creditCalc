@@ -1,51 +1,21 @@
-<!DOCTYPE HTML>
-
-<!-- We are using components form google. See https://getmdl.io/ -->
+<!DOCTYPE html>
+<html>
 <head>
+	<title>Кредитный симулятор</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-purple.min.css">
-	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-	<script src="js/credit.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css"> 
 </head>
 
 <body>
-
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-	<div class="mdl-card__title">
-		<h2 class="mdl-card__title-text">Расчёт кредита</h2>
-	</div>
+	<header>
+		<h1>Кредитный симулятор</h1>
+	</header>
 	
-<form action="#" id="mainForm">
-  
-	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    	<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="creditSum">
-    	<label class="mdl-textfield__label" for="creditSum">Сумма кредита</label>
-    	<span class="mdl-textfield__error">Введите число, без знаков валюты, пробелов и т.д.</span>
-	</div>
-	
-	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    	<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="rate">
-    	<label class="mdl-textfield__label" for="rate">Годовая % ставка (не ПСК)</label>
-    	<span class="mdl-textfield__error">Введите число, без знаков валюты, пробелов и т.д.</span>
-	</div>
-	
-	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    	<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="term">
-    	<label class="mdl-textfield__label" for="term">Срок кредита в месяцах</label>
-    	<span class="mdl-textfield__error">Введите число, без знаков валюты, пробелов и т.д.</span>
-	</div>
-
-		<button class="mdl-button mdl-js-button mdl-button--primary">
-			Рассчитать
-		</button>
-
-</form>
-
-</div>
-
-
+	<main>
+		<article class = "form">
+			<h1>Параметры кредита</h1>
+		</article>
+	</main>
 </body>
 
 </html>
