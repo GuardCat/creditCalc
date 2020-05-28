@@ -5,9 +5,9 @@ body {
 }
 
 header {
+	display:			flex;
 	height:				60px;
 	width:				100%;
-	display:			flex;
 	align-items:		center;
 	color:				#001979;
 }
@@ -18,19 +18,22 @@ h1 {
 	font-weight:		400;
 }
 
-main {
-	display:			flex;
-	flex-wrap:			wrap;
-	align-items:		center;
-	align-content:		center;
-}
-
 article {
 	display:			flex;
+	flex-wrap:			wrap;
+	align-content:		flex-start;
 	width:				320px;
 	min-height:			320px;
 	border-radius:		5px;
 	padding:			0px;
+}
+
+section {
+	display:			flex;
+	flex-wrap:			wrap;
+	align-items:		center;
+	align-content:		center;
+	padding:			5px;
 }
 
 .shadow {
@@ -51,4 +54,18 @@ article > h1 {
 	border-top-left-radius:	5px;
 	border-top-right-radius:5px;
 
+}
+
+div.formEl {
+	display:			flex;
+	flex-wrap:			wrap;
+	align-content:		center;
+	align-items:		center;
+	justify-content:	space-between;
+
+	width:	46%;
+}
+
+label {
+	display:			block;
 }
