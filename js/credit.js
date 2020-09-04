@@ -1,5 +1,6 @@
-/*jshint esversion: 6, browser: true*/
+/*jshint esversion: 8, browser: true*/
 
+"use stricrt"
 
 /**
  *
@@ -22,11 +23,12 @@ function calculateAnnuitetPayment(sum, monthlyRate, term) {
  * @requires			function calculateAnnuitetPayment
  *
  */
-function generateAnnuitetSchedule (sum, rate, term, customPayments = [ ]) {
-	const monthlyRate = rate / 100 / 12;
+function generateAnnuitetSchedule (sum, rate, term, customPayments = [ ], d = new Date( ) ) {
+	console.log(d);
+	const monthlyRate = rate / 100 / getDaysInYear( d.getFullYear( ) ) * getDaysInMonth( d.getFullYear( ), d.getMonth( ) + 1 );
 
 	let
-		monthlyPayment = calculateAnnuitetPayment(sum, monthlyRate, term),
+		monthlyPayment = calculateAnnuitetPayment(sum, rate / 12 / 100, term),
 		remainingSum = sum,
 		monthlyOverpaySum,
 		monthlyDebtSum,
@@ -38,7 +40,7 @@ function generateAnnuitetSchedule (sum, rate, term, customPayments = [ ]) {
 		customPayment		= customPayments[i] > monthlyPayment ? customPayments[i] : 0;
 		monthlyOverpaySum	= remainingSum * monthlyRate;
 		monthlyDebtSum		= monthlyPayment - monthlyOverpaySum + customPayment;
-		monthlyDebtSum		= monthlyDebtSum > 0 ? monthlyOverpaySum : 0;
+		monthlyDebtSum		= monthlyDebtSum > 0 ? monthlyPayment - monthlyOverpaySum + customPayment : 0;
 
 		if (customPayment && remainingSum + monthlyOverpaySum < customPayment) customPayment = remainingSum + monthlyOverpaySum;
 		remainingSum		= remainingSum - monthlyDebtSum - ( customPayment ? (customPayment - monthlyPayment) : 0 );
@@ -57,6 +59,14 @@ function generateAnnuitetSchedule (sum, rate, term, customPayments = [ ]) {
 	}
 
 	return schedule;
+}
+
+function getDaysInMonth(year, month) {
+	return  32 - new Date(year, month - 1, 32).getDate();
+}
+
+function getDaysInYear(year) {
+	return ( new Date(year, 11, 31) - new Date(year, 0, 0) ) / 86400000;
 }
 
 var a = [160000];
