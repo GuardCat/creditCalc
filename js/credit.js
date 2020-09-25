@@ -1,4 +1,4 @@
-/*jshint esversion: 8, browser: true*/
+/*jshint esnext: true */
 
 "use strict"
 
@@ -42,7 +42,7 @@ function generateSchedule (sum, rate, term, date = new Date( ) ) {
 		paymentDate = date,	previousDate,
 		debt = sum, overpay
 	;
-	
+
 	for (let i = 0; i < term; i++ ) {
 		previousDate = new Date(paymentDate);
 		paymentDate.setMonth( paymentDate.getMonth( ) + 1 );
