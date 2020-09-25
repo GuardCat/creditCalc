@@ -5,15 +5,21 @@
 /**
  *
  * @param	{number}	sum сумма кредита в рублях
- * @param	{number}	monthlyRate ставка в месяц (годовая / 12)
- * @param	{number}	term ставка в месяцах
+ * @param	{number}	rate ставка
+ * @param	{number}	term срок в месяцах
+ * @requires {function} annuitetCoefficient
  * @return	{number}	ежемесячный платеж
  *
  */
-function calculateAnnuitetPayment(sum, rate, term) {
-  const monthlyRate = rate / 12;
-	return +( (sum * ( monthlyRate + monthlyRate / ( Math.pow( (1 + monthlyRate), term ) - 1) ) ).toFixed(2) );
+function annuitetPayment(sum, rate, term) {
+	return +( ( sum * annuitetCoefficient(rate, term) ).toFixed(2) );
 }
+
+function annuitetCoefficient(rate, term) {
+  const mRate = rate / 12 / 100;
+  return ( mRate * Math.pow(mRate + 1, term) / ( Math.pow(mRate + 1, term) - 1 ) );
+}
+
 
 /**
  *
