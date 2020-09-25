@@ -4,18 +4,25 @@
 
 /**
  *
- * @param	{number}	sum сумма кредита в рублях
- * @param	{number}	rate ставка
- * @param	{number}	term срок в месяцах
- * @return	{number}	ежемесячный платеж
+ * @param     {number}	sum сумма кредита в рублях
+ * @param     {number}	rate ставка
+ * @param     {number}	term срок в месяцах
+ * @requires  {function} annuitetCoefficient
+ * @return    {number}	ежемесячный платеж
  *
  */
+
 function annuitetPayment(sum, rate, term) {
-	const
+	const 
 		mRate = rate / 12 / 100,
-		annuitetCoefficient = mRate * Math.pow(mRate + 1, term) / ( Math.pow(mRate + 1, term) - 1 )
+		ac = annuitetCoefficient(rate, term)
 	;
-	return +( (sum * annuitetCoefficient).toFixed(2) );
+	return +( (sum * ac).toFixed(2) );
+}
+
+function annuitetCoefficient(rate, term) {
+		const mRate = rate / 12 / 100;
+		return mRate * Math.pow(mRate + 1, term) / ( Math.pow(mRate + 1, term) - 1 );
 }
 
 
@@ -39,7 +46,7 @@ function generateSchedule (sum, rate, term, date = new Date( ) ) {
 	for (let i = 0; i < term; i++ ) {
 		previousDate = new Date(paymentDate);
 		paymentDate.setMonth( paymentDate.getMonth( ) + 1 );
-		
+
 		if (debt < payment) payment = debt;
 		overpay = debt * dailyRate * datesDiff(previousDate, paymentDate)
 		schedule.push( {date: new Date (paymentDate) , sum: payment, debtSum: payment - overpay, overpay} );
