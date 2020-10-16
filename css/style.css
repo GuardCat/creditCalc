@@ -2,6 +2,7 @@ body {
 	font-family:		Calibri;
 	padding:				5px;
 	margin:					0px;
+	font-size:			12pt;
 }
 
 header {
@@ -47,9 +48,9 @@ article > h1 {
 	color:				white;
 	margin:				0;
 	padding-left:		15px;
-	display:			flex;
+	display:				flex;
 	align-items:		center;
-	align-content:		center;
+	align-content:	center;
 	font-weight:		300;
 	border-top-left-radius:	5px;
 	border-top-right-radius:5px;
@@ -75,7 +76,18 @@ article > h1 {
 	margin-top:				10px;
 }
 
-
 label {
 	display:			block;
+}
+
+button {
+	margin-top:				10px;
+	border-radius:		5px;
+	background-color: #4070b0;
+	color:						#fff;
+	padding:					5px;
+	border:						0px;
+	min-width:				100px;
+	margin-right:			10px;
+	margin-left: auto;
 }
